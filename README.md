@@ -5,23 +5,6 @@
 [![YOLOv8](https://img.shields.io/badge/YOLOv8-8.2+-green?style=flat-square&logo=ultralytics)](https://github.com/ultralytics/ultralytics)
 [![License](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)](LICENSE)
 [![Status](https://img.shields.io/badge/Status-Active-brightgreen?style=flat-square)](https://github.com)
-
----
-
-## 📋 Table of Contents
-- [Overview](#overview)
-- [Key Results](#key-results)
-- [Features](#features)
-- [Technology Stack](#technology-stack)
-- [Installation](#installation)
-- [Quick Start](#quick-start)
-- [Project Structure](#project-structure)
-- [Results & Metrics](#results--metrics)
-- [How It Works](#how-it-works)
-- [Future Improvements](#future-improvements)
-- [Contributing](#contributing)
-- [License](#license)
-
 ---
 
 ## 🎯 Overview
@@ -351,26 +334,6 @@ Augmentation: Albumentations (16x)
 
 ---
 
-## 🤝 Contributing
-
-Contributions are welcome! Here's how you can help:
-
-1. **Fork** the repository
-2. **Create** a feature branch (`git checkout -b feature/improvement`)
-3. **Make** your changes
-4. **Commit** (`git commit -m 'Add improvement'`)
-5. **Push** (`git push origin feature/improvement`)
-6. **Create** a Pull Request
-
-### Areas for Contribution:
-- Model optimization and inference speed
-- New augmentation techniques
-- Documentation improvements
-- Bug fixes and error handling
-- Additional evaluation metrics
-
----
-
 ## 📚 Documentation
 
 For detailed methodology, experimental results, and ablation studies, see:
@@ -384,75 +347,6 @@ For detailed methodology, experimental results, and ablation studies, see:
 - [PyTorch Documentation](https://pytorch.org/docs/)
 - [Albumentations](https://albumentations.ai/)
 - [Medical Imaging in Deep Learning](https://arxiv.org/list/eess.IV/recent)
-
----
-
-## 📞 Contact & Support
-
-**Questions or Feedback?**
-- 📧 Email: your.email@gmail.com
-- 💼 LinkedIn: linkedin.com/in/YOUR_PROFILE
-- 🐙 GitHub: @YOUR_USERNAME
-
-**Issues & Bugs:**
-Please open a GitHub issue with:
-- Description of the problem
-- Steps to reproduce
-- Expected vs. actual behavior
-- System information (OS, Python version, GPU)
-
----
-
-## 📝 Citation
-
-If you use this project in your research, please cite:
-
-```bibtex
-@misc{wilms2025,
-  title={Wilms Tumor Detection using YOLOv8 Deep Learning Approach},
-  author={Your Name},
-  year={2025},
-  publisher={GitHub},
-  howpublished={\url{https://github.com/YOUR_USERNAME/Wilms-Tumor-Detection-Using-Deep-Learning-Approach}}
-}
-```
-
----
-
-## 📜 License
-
-This project is licensed under the **MIT License** - see [LICENSE](LICENSE) file for details.
-
-### What this means:
-✅ Free to use commercially
-✅ Free to modify
-✅ Free to distribute
-
-
----
-
-## 🙏 Acknowledgments
-
-- **Ultralytics** for YOLOv8 framework
-- **PyTorch** team for deep learning framework
-- **Albumentations** for data augmentation
-- **OpenCV** community for image processing
-
----
-
-## ⭐ Show Your Support
-
-If this project helped you, please consider:
-- ⭐ **Star** this repository
-- 🍴 **Fork** for your own use
-- 📢 **Share** with others
-- 💬 **Comment** with feedback
-
----
-
-**Last Updated:** November 23, 2025  
-**Status:** ✅ Active Development  
-**Version:** 1.0.0
 
 ---
 
