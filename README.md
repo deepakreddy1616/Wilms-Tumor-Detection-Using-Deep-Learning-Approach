@@ -1,353 +1,151 @@
-# 🎯 Wilms Tumor Detection using Deep Learning Approach
+🚨 Real-Time Emergency Logistics Routing Using Metaheuristic Algorithms
 
-[![Python](https://img.shields.io/badge/Python-3.10+-blue?style=flat-square&logo=python)](https://www.python.org/)
-[![PyTorch](https://img.shields.io/badge/PyTorch-2.3.0-red?style=flat-square&logo=pytorch)](https://pytorch.org/)
-[![YOLOv8](https://img.shields.io/badge/YOLOv8-8.2+-green?style=flat-square&logo=ultralytics)](https://github.com/ultralytics/ultralytics)
-[![License](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)](LICENSE)
-[![Status](https://img.shields.io/badge/Status-Active-brightgreen?style=flat-square)](https://github.com)
----
+[![Python](https://img.shields.io/badge/python-3.8+-blue?style=flat-square&logo[![NetworkX](https://img.shields.io/badge/NetworkX-3.2+-purple?style=flat-square[![OSMnx](https://img.shields.io/badge/OSMnx-1.3+-bright[![HERE Maps](https://img.shields.io/badge/HERE%20API-traffic-blue?style=flat-square&logo[![License](https://img.shields.io/badge/License-MIT-yellow[![Status](https://img.shields.io/badge/Status-Active-brightgreen?style=flat-square
 
-## 🎯 Overview
+🎯 Project Overview
+A real-time, AI-driven logistics routing system designed for disaster and emergency response. Integrates live traffic data and Grey Wolf Optimization (GWO) for dynamically finding optimal vehicle delivery routes. Major goal: Minimize aid delivery delays and maximize route reliability during crisis scenarios.
 
-A **deep learning-based automated detection system** for Wilms tumors in medical images using the **YOLOv8 object detection** model. This project implements an end-to-end pipeline including data augmentation, model training, evaluation, and visualization.
+Problem Statement
+In disasters (earthquakes, floods), traditional logistics is disrupted by road closures and unpredictable events.
 
-**Why this matters:** Wilms tumor is the most common renal malignancy in children. Early and accurate detection is crucial for better treatment outcomes. This system aims to assist radiologists in faster and more accurate diagnosis.
+Routing must adapt instantly to new obstacles, congestion, and shifting demand.
 
-### Problem Statement
-- Manual identification of tumors is time-consuming
-- Prone to human error and variability
-- Requires experienced radiologists
-- Need for automated, consistent detection system
+Humanitarian supply chains require equitable, efficient, data-driven decision-making—beyond what classical algorithms provide.
 
-### Solution
-Implemented a YOLOv8-based object detection model with comprehensive data augmentation and evaluation metrics.
+Solution
+This project combines real-time data streams (from HERE Maps API) and a metaheuristic GWO algorithm to automatically and adaptively generate robust, optimal routes, even as conditions change.
 
----
+📊 Key Results
+Metric	Value / Result	Status
+Avg. Travel Time	294.96 units (synthetic)	⚡ Fast
+Route Reliability	97% feasible routes	✅ Robust
+Avg. Runtime (25 nodes)	0.0129 s	🚀 Scalable
+Real-Time Data/Adaptivity	Supported	✅
+Multi-Criteria Fitness	Time, congestion, safety	✅
+✨ Features
+✅ Real-time Routing
+ - Live traffic, closures, hazards from HERE Maps API
+✅ Metaheuristic Optimization
+ - GWO algorithm for complex, uncertain environments
+✅ Dynamic Adaptation
+ - Instantly adjusts to new disruptions or demand
+✅ Multi-Objective Fitness
+ - Travel time, congestion, and road safety
+✅ Scalability and Speed
+ - Solves large city sub-graphs in milliseconds
+✅ Humanitarian Focus
+ - Fair resource allocation, disaster-mitigation design
+✅ Visualizations
+ - Route and convergence visualizations with Folium and Matplotlib
 
-## 📊 Key Results
+🛠️ Technology Stack
+Component	Technology
+Programming Language	Python 3.8+
+Graph Library	NetworkX, OSMnx
+Optimization	Grey Wolf Optimization (custom)
+Data Sources	HERE Maps API, OpenStreetMap
+Visualization	Folium, Matplotlib
+Scientific Computing	Numpy, Pandas
+🚀 Quick Start
+Prerequisites
+Python 3.8 or higher
 
-| Metric | Value | Status |
-|--------|-------|--------|
-| **mAP@50** | 79.6% | ✅ Excellent |
-| **mAP@75** | 65.2% | ✅ Good |
-| **Precision** | 69.2% | ✅ High |
-| **Recall** | 74.2% | ✅ High |
-| **F1-Score** | 0.717 | ✅ Strong |
-| **Classes Detected** | 2 (Wilms, Other Tumors) | ✅ Multi-class |
-| **Training Time** | ~2 hours (GPU) | ⚡ Fast |
-| **Inference Time** | ~50ms/image | 🚀 Real-time |
+pip
 
----
+Git
 
-## ✨ Features
+HERE Maps API key (register free)
 
-✅ **Data Augmentation Pipeline**
-   - 16x augmentation using Albumentations
-   - Horizontal/Vertical flips, rotations, elastic transforms
-   - Brightness/contrast adjustments
-   - Optical and grid distortions
+Installation
+bash
+# 1. Clone this repo
+git clone https://github.com/YOUR_USERNAME/emergency-logistics-routing.git
+cd emergency-logistics-routing
 
-✅ **YOLOv8 Implementation**
-   - Pre-trained weights from Ultralytics
-   - Fine-tuned for medical imaging
-   - Multi-scale feature extraction
-   - Real-time inference capability
-
-✅ **Comprehensive Evaluation**
-   - mAP@50, mAP@75, mAP@95 metrics
-   - Precision, Recall, F1-Score calculations
-   - Confusion matrices and ROC curves
-   - Per-class performance analysis
-
-✅ **Visualization Tools**
-   - Training curves (loss, mAP, precision)
-   - Detection result visualization
-   - Model architecture diagrams
-   - Inference examples
-
-✅ **Easy-to-Use Interface**
-   - Command-line arguments for flexibility
-   - Configurable parameters
-   - Logging and progress tracking
-
----
-
-## 🛠️ Technology Stack
-
-| Component | Technology |
-|-----------|-----------|
-| **Deep Learning Framework** | PyTorch 2.3.0+ |
-| **Object Detection** | YOLOv8 (Ultralytics) |
-| **Image Processing** | OpenCV, PIL |
-| **Data Augmentation** | Albumentations |
-| **Scientific Computing** | NumPy, Pandas |
-| **Visualization** | Matplotlib, Seaborn |
-| **Language** | Python 3.10+ |
-| **Hardware** | CUDA-capable GPU (recommended) |
-
----
-
-## 🚀 Quick Start
-
-### Prerequisites
-
-```bash
-- Python 3.10 or higher
-- pip (Python package manager)
-- Git
-- CUDA Toolkit 11.8+ (for GPU acceleration - recommended)
-- CUDNN (for GPU support)
-```
-
-### Installation
-
-1. **Clone the repository:**
-```bash
-git clone https://github.com/YOUR_USERNAME/Wilms-Tumor-Detection-Using-Deep-Learning-Approach.git
-cd Wilms-Tumor-Detection-Using-Deep-Learning-Approach
-```
-
-2. **Create Virtual Environment:**
-```bash
-# Using venv
+# 2. Set up virtual environment
 python -m venv venv
-
 # Activate (Windows)
 venv\Scripts\activate
-
 # Activate (Mac/Linux)
 source venv/bin/activate
-```
 
-3. **Install Dependencies:**
-```bash
-pip install --upgrade pip
+# 3. Install all dependencies
 pip install -r requirements.txt
-```
 
-4. **Verify Installation:**
-```bash
-python -c "import torch; print(f'PyTorch version: {torch.__version__}')"
-python -c "from ultralytics import YOLO; print('YOLOv8 ready')"
-```
+# 4. Set up environment
+cp .env.example .env
+# Add your HERE Maps API key to .env
+Basic Usage
+python
+from src.routing_system import EmergencyRoutingProblem, RealTimeGWO
 
-### Basic Usage
+problem = EmergencyRoutingProblem(
+    city_name="Hyderabad, Telangana, India",
+    num_locations=10
+)
+optimizer = RealTimeGWO(
+    problem=problem,
+    num_wolves=20,
+    max_iter=50
+)
+best_route, best_time, convergence = optimizer.optimize()
 
-```bash
-# Data Augmentation
-python wilmstumordetection.py --augment \
-    --input_images data/images \
-    --input_labels data/labels \
-    --output_dir data/augmented
+print(f"Best route: {best_route}")
+print(f"Total travel time: {best_time}")
 
-# Model Training
-python wilmstumordetection.py --train \
-    --epochs 80 \
-    --batch_size 16 \
-    --lr 0.001
+📈 How It Works
+Real-Time Data Ingestion: Retrieves live traffic, incident, and network info (HERE Maps)
 
-# Full Pipeline (Augment + Train)
-python wilmstumordetection.py --augment --train \
-    --epochs 80 \
-    --augmentation_factor 16
+Weighted Graph Construction: Models city as graph, weights edges with time, safety, and congestion
 
-# Get Help
-python wilmstumordetection.py --help
-```
+GWO Optimization: Simulated wolf “agents” iteratively search for route minimizing time/cost/safety penalty
 
----
+Fitness Calculation: Multi-objective function scoring speed, congestion, hazards
 
-## 📁 Project Structure
+Visualization: Best route and all metrics visualized (Folium, matplotlib)
 
-```
-Wilms-Tumor-Detection-Using-Deep-Learning-Approach/
-│
-├── wilmstumordetection.py          # Main training script
-├── wilmstumordetection.ipynb       # Jupyter notebook version
-├── project-paper.pdf               # Detailed methodology & research
-├── README.md                        # This file
-├── LICENSE                          # MIT License
-├── requirements.txt                 # Python dependencies
-├── .gitignore                       # Git ignore rules
-│
-├── data/                            # Dataset directory
-│   ├── images/                      # Original medical images
-│   ├── labels/                      # Annotations (YOLO format)
-│   ├── augmented/                   # Augmented images (generated)
-│   └── yolov8dataset/               # YOLOv8 dataset format (generated)
-│
-├── runs/                            # YOLOv8 training outputs
-│   ├── detect/                      # Detection results
-│   ├── train/                       # Training runs
-│   └── val/                         # Validation results
-│
-└── outputs/                         # Model outputs
-    ├── augmented_images/            # Augmented dataset
-    ├── metrics/                     # Performance metrics
-    └── visualizations/              # Graphs and charts
-```
+🧪 Model Highlights
+Grey Wolf Optimization: Population-based; uses alpha, beta, delta wolves as leaders, updating routes iteratively
 
----
+Dynamic Response: Auto-recomputes routes on closure or incident triggers
 
-## 📊 Results & Metrics
+Multi-metric Evaluation: Optimizes not just for speed but also safety and reliability
 
-### Training Performance
+📄 Results & Evaluation
+Key Metrics (Sample Synthetic Test)
+Metric	Value
+Travel Time	294.96 units
+Route Reliability	97%
+Runtime (25 nodes)	0.013 s
+Scalability	Linear (w.r.t nodes)
+Convergence curves show improvement at each GWO iteration
 
-```
-Epoch 1-10:    mAP increasing from 30% to 65%
-Epoch 10-30:   Rapid improvement to 75%
-Epoch 30-60:   Fine-tuning phase, mAP reaches 78%
-Epoch 60-80:   Convergence, final mAP@50 = 79.6%
-```
+Visual route maps generated for each test scenario
 
-### Confusion Matrix
-- **True Positives (TP)**: 185/249 (74.2%)
-- **False Positives (FP)**: High precision minimizes false alarms
-- **False Negatives (FN)**: Low miss rate ensures tumor detection
+See paper for full benchmarks and evaluations
 
-### Class-wise Performance
-| Class | Precision | Recall | F1-Score | Count |
-|-------|-----------|--------|----------|-------|
-| Wilms Tumor | 71.2% | 76.8% | 0.74 | 2,150 |
-| Other Tumors | 67.1% | 71.5% | 0.69 | 1,840 |
-| **Overall** | **69.2%** | **74.2%** | **0.72** | 3,990 |
+💡 Real-World Impact
+Designed for:
 
----
+Disaster relief agencies & humanitarian NGOs
 
-## 🧠 How It Works
+Urban planners & smart city logistics
 
-### 1. Data Augmentation Phase
-```
-Original Images (100)
-        ↓
-Albumentations Pipeline
-        ↓
-16x Augmentation Factor
-        ↓
-Augmented Dataset (1,600)
-```
+Researchers in AI for critical infrastructure
 
-**Augmentation Techniques:**
-- Geometric: Rotations, flips, elastic transforms
-- Photometric: Brightness, contrast, blur
-- Spatial: Shift, scale, optical distortion
+📚 Documentation
+For full methodology, literature survey, mathematical formulation, and ablation studies:
+📄 paper/Project-Paper.pdf
 
-### 2. Model Architecture
-```
-YOLOv8 Architecture:
-Input Image (640×640)
-        ↓
-Backbone (CSPDarknet)
-        ↓
-Neck (PAN)
-        ↓
-Head (Detection layers)
-        ↓
-Bounding Boxes + Confidence Scores
-```
+🔗 Related Resources
+HERE Maps API
 
-### 3. Training Pipeline
-```
-Data Loading
-    ↓
-Model Initialization (YOLOv8m)
-    ↓
-Loss Calculation (Focal Loss)
-    ↓
-Backpropagation
-    ↓
-Parameter Updates (SGD Optimizer)
-    ↓
-Validation & Metrics
-    ↓
-Model Checkpointing
-```
+Grey Wolf Optimization paper
 
-### 4. Inference Process
-```
-Medical Image Input
-    ↓
-Preprocessing & Normalization
-    ↓
-YOLOv8 Model Forward Pass
-    ↓
-NMS (Non-Maximum Suppression)
-    ↓
-Bounding Box Predictions
-    ↓
-Confidence Visualization
-```
+OSMnx Docs
 
----
+📝 License
+This project is licensed under the MIT License – see LICENSE for details.
 
-## 📈 Visualizations
-
-The project generates:
-- **Training curves** (Loss, mAP, Precision, Recall)
-- **Confusion matrices** for each class
-- **Precision-Recall curves** (PR curves)
-- **Detection examples** with bounding boxes
-- **Feature maps** from different layers
-
----
-
-## 🔍 Key Implementation Details
-
-### Data Format (YOLO)
-```
-images/
-├── image1.jpg
-├── image2.jpg
-└── ...
-
-labels/
-├── image1.txt  # Format: <class_id> <x_center> <y_center> <width> <height>
-├── image2.txt
-└── ...
-```
-
-### Training Configuration
-```python
-Model: YOLOv8 Medium (m) variant
-Epochs: 80
-Batch Size: 16
-Learning Rate: 0.001
-Optimizer: SGD with momentum=0.937
-Loss Function: YOLOv8 Focal Loss (weighted)
-Augmentation: Albumentations (16x)
-```
-
----
-
-## 💡 Future Improvements
-
-- [ ] Deploy as web API (Flask/FastAPI)
-- [ ] Create interactive Streamlit demo
-- [ ] Add real-time video inference
-- [ ] Mobile app development (TensorFlow Lite)
-- [ ] Multi-modal integration (CT scans + MRI)
-- [ ] Explainability features (Grad-CAM, attention maps)
-- [ ] Benchmark against other models (Faster RCNN, EfficientDet)
-- [ ] Publish to Hugging Face Model Hub
-- [ ] Create Docker container for easy deployment
-- [ ] Add confidence calibration techniques
-
----
-
-## 📚 Documentation
-
-For detailed methodology, experimental results, and ablation studies, see:
-📄 **[project-paper.pdf](project-paper.pdf)**
-
----
-
-## 🔗 Related Resources
-
-- [YOLOv8 Documentation](https://docs.ultralytics.com/)
-- [PyTorch Documentation](https://pytorch.org/docs/)
-- [Albumentations](https://albumentations.ai/)
-- [Medical Imaging in Deep Learning](https://arxiv.org/list/eess.IV/recent)
-
----
-
-*Built with ❤️ using Python, PyTorch, and YOLOv8*
+🌟 If you found this useful, please ⭐ the repo and cite our work!
+Built for emergency logistics in a changing world, powered by real-time data, metaheuristics, and Python.
