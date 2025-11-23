@@ -1,183 +1,90 @@
-🧠 Wilms Tumor Detection using Deep Learning (YOLO)
+# 🌟 Wilms Tumor Detection using Deep Learning (YOLOv8) 🌟
 
-A deep learning–based medical imaging project to detect Wilms tumor in pediatric MRI scans using a YOLO architecture.
-This repository contains code, documentation, trained model files, and the full project paper.
+## 🔬 Project Overview
 
-📄 Full Project Paper: project-paper.pdf (included in repo)
+[cite_start]Wilms tumor (Nephroblastoma) is the most common pediatric kidney cancer, and its swift, accurate diagnosis is crucial for effective treatment and improved patient outcomes[cite: 349, 351].
 
-⭐ Project Highlights
+This project presents an **innovative deep learning-based system** for the early and automated detection of Wilms tumors in MRI scans. [cite_start]By leveraging the power of the **You Only Look Once (YOLOv8)** architecture, our model provides a fast, accurate, and automated diagnostic tool designed to assist radiologists and significantly enhance clinical efficiency[cite: 345, 566, 571, 572].
 
-🚀 YOLO-based object detection model tailored for MRI tumor detection
+---
 
-🎯 Achieves 97.4% accuracy, 96.55% precision, 98.26% recall, F1 = 0.97
+## ✨ Key Features
 
-🧪 Dataset of MRI scans, preprocessed & augmented to improve robustness
+* [cite_start]**State-of-the-Art Architecture:** Utilizes the high-efficiency and accuracy of the **YOLOv8** object detection model[cite: 463, 500].
+* [cite_start]**High Diagnostic Accuracy:** Achieved an outstanding accuracy of **97.40%** and a Dice coefficient of **0.97** on the evaluation dataset[cite: 550, 552].
+* [cite_start]**Real-Time Potential:** YOLO's speed and unified architecture make it highly suitable for real-time clinical applications where timely diagnosis is critical[cite: 533, 534, 571].
+* [cite_start]**Robust Model Training:** Implements comprehensive preprocessing steps including **Normalization, Resizing (416x416), and extensive Augmentation** (rotation, flipping, zooming) to prevent overfitting and ensure generalizability[cite: 458, 459, 460, 569].
 
-🧩 Includes training scripts, inference code, model weights, and evaluation
+---
 
-📚 Built as part of an academic deep learning research project
+## 🚀 Performance Metrics
 
-📘 Table of Contents
+[cite_start]Our model was rigorously evaluated on an augmented dataset of nearly 1000 MRI images, demonstrating strong performance across key metrics[cite: 448, 547, 550]:
 
-Overview
+| Metric | Value |
+| :--- | :--- |
+| **Accuracy** | [cite_start]**97.40%** [cite: 550] |
+| Recall (Sensitivity) | [cite_start]98.26% [cite: 552] |
+| Precision | [cite_start]96.55% [cite: 551] |
+| **F1 Score** | [cite_start]**0.97** [cite: 552] |
+| **Dice Coefficient** | [cite_start]**0.97** [cite: 552] |
 
-Dataset
+---
 
-Results
+## ⚙️ Methodology
 
-Tech Stack
+[cite_start]The core of our approach is the **You Only Look Once (YOLOv8)** architecture, which reformulates object detection as a single regression problem, enabling fast, end-to-end processing[cite: 497, 501, 535].
 
-Repository Structure
+### Architecture Components:
+* [cite_start]**Backbone:** **CSPDarknet53** for high-resolution feature extraction, crucial for detecting small, complex tumor structures[cite: 504].
+* [cite_start]**Neck:** **PANet and Spatial Pyramid Pooling (SPP) Layers** to enhance multi-scale feature fusion and handle variations in tumor size and shape[cite: 525, 526, 527].
+* [cite_start]**Head:** Responsible for predicting bounding boxes, class probabilities, and objectness scores across three different sizes to accommodate tumors of all scales[cite: 528, 529].
 
-Setup & Installation
+### Training Details:
+* [cite_start]**Optimizer:** **Adam** optimizer with an initial learning rate of **0.001**[cite: 539, 540].
+* [cite_start]**Loss Function:** A composite YOLO loss function combining classification, bounding box regression (confinement), and confidence (objectness) losses[cite: 541, 542].
+* [cite_start]**Training:** Trained for 50 epochs with a batch size of 16[cite: 543, 544].
 
-Training
+---
 
-Inference
+## 🛠️ Tools & Technologies
 
-Contact
+| Category | Tool / Library | Purpose |
+| :--- | :--- | :--- |
+| **Programming Language** | Python | [cite_start]Primary language for model development [cite: 452] |
+| **Deep Learning Frameworks** | TensorFlow, Keras | [cite_start]Used for model development, training, and evaluation [cite: 453] |
+| **Core Architecture** | YOLOv8 | [cite_start]The main deep learning model for object detection [cite: 463] |
+| **Image Processing** | OpenCV, PIL | [cite_start]Handling image processing tasks like resizing and augmentation [cite: 454, 455] |
+| **Development Environment** | Google Colab | [cite_start]Used for code execution and model training [cite: 456] |
 
-🔍 Overview
+---
 
-Wilms tumor is a kidney cancer commonly found in children.
-This project builds an end-to-end deep learning pipeline to automatically detect tumor regions on MRI scans.
+## 📊 Dataset
 
-We use a YOLO architecture with:
+* [cite_start]**Source:** Custom-made dataset augmented from MRI scans of Wilms tumor patients and other pediatric tumors[cite: 446].
+* [cite_start]**Original Data:** Axial c portal venous phase MRI scans for 20 patients, totaling 60 images, sourced from **Radiopedia.org**[cite: 447, 448].
+* [cite_start]**Augmented Data:** Expanded to nearly **1000 images** using augmentation techniques[cite: 448, 547].
+* [cite_start]**Split:** The dataset was partitioned into an **8:2 ratio** for training and validation/testing[cite: 450].
 
-CSP-type backbone
+---
 
-PANet + SPP neck
+## 🤝 Next Steps & Future Work
 
-YOLO detection head
+To further enhance the model's precision and utility, future work will focus on:
 
-Adam optimizer
+* [cite_start]**Dataset Refinement:** Organizing and better processing the dataset to yield even higher precision[cite: 563].
+* [cite_start]**Feature Enrichment:** Including additional parameters and leveraging tools like **Pyradiomics** to extract more intricate features from the MRI images, potentially improving diagnostic metrics[cite: 564].
+* **Wider Generalization:** Testing the model on more diverse, independent clinical datasets to further assess its real-world reliability.
 
-Image size: 416×416
+---
 
-Epochs: 50
+## ✍️ Authors
 
-Batch size: 16
+This project was developed by the following researchers:
 
-🗂 Dataset
+* **Venkatesh Kavididevi**
+* **Necha Akhila Sri Kornepati**
+* **Deepak Reddy Chelladi**
+* **Shoaib Ali MD**
 
-MRI images collected from open-source radiology resources
-
-20 patient cases → ~60 raw images
-
-Data augmented → 1000+ images
-
-Labeled using YOLO bounding-box format
-
-Train/Val split: 80/20
-
-🧪 Results
-Metric	Score
-Accuracy	97.40%
-Precision	96.55%
-Recall	98.26%
-F1 Score	0.97
-Dice Coefficient	0.97
-
-The model reliably detects Wilms tumor regions with strong performance across all metrics.
-
-🛠 Tech Stack
-
-Python
-
-PyTorch
-
-YOLO architecture (Ultralytics-based or custom implementation)
-
-OpenCV
-
-Albumentations
-
-NumPy / Matplotlib
-
-Scikit-learn
-
-📁 Repository Structure
-.
-├── README.md
-├── project-paper.pdf
-├── data/
-│   ├── images/
-│   └── labels/
-├── scripts/
-│   ├── prepare_dataset.py
-│   ├── augment.py
-│   └── train_yolo.py
-├── inference/
-│   └── detect.py
-├── models/
-│   └── best.pt
-├── configs/
-│   └── dataset.yaml
-└── requirements.txt
-
-⚙️ Setup & Installation
-git clone <your-repo-link>
-cd <repo-folder>
-
-python -m venv venv
-source venv/bin/activate        # Windows → venv\Scripts\activate
-
-pip install -r requirements.txt
-
-
-Example requirements.txt:
-
-torch
-opencv-python
-ultralytics
-numpy
-matplotlib
-albumentations
-scikit-learn
-Pillow
-tqdm
-
-🏋️ Training
-
-Using Ultralytics YOLO:
-
-yolo task=detect mode=train model=yolov8n.pt \
-  data=configs/dataset.yaml \
-  epochs=50 batch=16 imgsz=416 lr0=0.001
-
-
-OR using your custom script:
-
-python scripts/train_yolo.py --epochs 50 --batch 16 --img-size 416
-
-🔮 Inference
-
-Run detection on sample images:
-
-python inference/detect.py --weights models/best.pt --source data/images/
-
-
-Results will be saved in:
-
-inference/results/
-
-👨‍⚕️ Applications
-
-Early tumor screening
-
-Radiology workflow assistance
-
-Decision support systems
-
-Medical AI research
-
-📬 Contact
-
-📧 chelladideepakreddy@gmail.com
-
-💼 LinkedIn: Add your link here
-
-📜 License
-
-This project is licensed under the MIT License.
-Feel free to use, modify, and contribute.
+[cite_start]*(All authors are from the Department of Information Technology, Vardhaman College of Engineering, Hyderabad, India.)* [cite: 329, 330, 334, 336, 357, 358]
