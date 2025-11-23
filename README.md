@@ -1,4 +1,4 @@
-# 🌟 Wilms Tumor Detection using Deep Learning (YOLOv8) 🌟
+# 🌟 Wilms Tumor Detection using Deep Learning 🌟
 
 ## 🔬 Project Overview
 
