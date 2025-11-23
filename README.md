@@ -1,5 +1,5 @@
 
-# 🌟 Wilms Tumor Detection Using Deep Learning (YOLOv8) 🌟
+# 🌟 Wilms Tumor Detection Using Deep Learning 🌟
 
 [![Python](https://img.shields.io/badge/Python-3.10+-blue)](https://www.python.org/)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.3.0-red)](https://pytorch.org/)
@@ -8,235 +8,155 @@
 [![Status](https://img.shields.io/badge/Status-Active-brightgreen)](https://github.com)
 
 ---
+Project overview
 
-## 📑 Table of Contents
+This project implements a YOLO-based pipeline to locate and classify Wilms tumor regions in MRI images. Key highlights from the paper:
 
-- [Project Overview](#project-overview)
-- [Key Features](#key-features)
-- [🛠️ Technology Stack](#️technology-stack)
-- [🔌 APIs & Data Sources](#️apis--data-sources)
-- [🔧 Development & Testing](#development--testing)
-- [🏗️ System Architecture](#system-architecture)
-- [Installation & Setup](#installation--setup)
-    - [Step-by-Step Installation](#step-by-step-installation)
-    - [Quick Start](#quick-start)
-    - [Usage & Examples](#usage--examples)
-    - [Using as Python Module](#using-as-python-module)
-    - [Advanced Configuration](#advanced-configuration)
-- [Example Output](#example-output)
-- [⚡ Performance Results](#-performance-results)
-- [📊 Quantitative Metrics](#quantitative-metrics)
-- [📄 PI Documentation](#pi-documentation)
-- [🧪 Testing](#testing)
-- [📚 Research References](#research-references)
-- [✍️ Authors](#authors)
+Model: YOLO (YOLOv8 style architecture), backbone with CSP-like features; PANet + SPP neck. (See implementation diagrams in the paper.) 
 
----
+project-paper
 
-## 🔬 Project Overview
+Dataset: Custom MRI dataset built from Radiopaedia examples — 20 patient cases (≈60 raw images) augmented to ~1000 images; train/val split ~80:20. 
 
-Wilms tumor (Nephroblastoma) is the most common kidney cancer in children. Early detection is crucial for effective treatment. This project leverages deep learning, specifically the YOLOv8 object detection architecture, to automate and optimize tumor identification in MRI scans.
+project-paper
 
----
+Typical training hyperparameters used in the study: Adam optimizer, learning rate 0.001, epochs=50 with early stopping, batch_size=16, image size 416x416. 
 
-## ✨ Key Features
+project-paper
 
-- **YOLOv8-based Detection:** Real-time, high-accuracy object detection.
-- **End-to-End Pipeline:** Data preprocessing, augmentation, training, evaluation.
-- **Comprehensive Metrics:** mAP, Precision, Recall, F1, Dice coefficient.
-- **Robust Preprocessing:** Normalization, resizing, augmentation (rotation, flipping, zooming) for generalizability.
-- **Flexible API:** Can be used as a CLI script or Python module.
-- **Rich Visualization:** Training curves, confusion matrix, detection overlays.
-- **Modular Design:** Easily extensible for further research.
+Paper / dataset
 
----
+Full project paper (PDF): /mnt/data/project-paper.pdf — use this local path for the paper. (It contains dataset description, architecture details, figures, training curves and the results table.) 
 
-## 🛠️ Technology Stack
+project-paper
 
-| Layer             | Technology      | Purpose               |
-|-------------------|----------------|-----------------------|
-| Language          | Python 3.10+    | Core development      |
-| Deep Learning     | PyTorch         | Model training        |
-| Object Detection  | Ultralytics YOLOv8 | Tumor localization |
-| Augmentation      | Albumentations  | Data enrichment       |
-| Processing        | OpenCV, PIL     | Image manipulation    |
-| Environment       | Google Colab    | GPU-enabled training  |
-| Visualization     | Matplotlib      | Plots & charts        |
+Requirements
 
----
+Create a Python venv and install dependencies:
 
-## 🔌 APIs & Data Sources
-
-- **Radiopedia**: Source for sample pediatric MRI data.
-- **Internal Dataset**: Augmented and annotated Wilms tumor and non-tumor MRI images (not publicly available).
-- **YOLOv8 API**: For model training and inference.
-
----
-
-## 🔧 Development & Testing
-
-- Developed and iterated using Git & GitHub.
-- Unit and integration testing for model outputs and pipeline modules.
-- Continuous Integration with GitHub Actions (optional).
-- Pre-trained weights available for initial evaluation.
-
----
-
-## 🏗️ System Architecture
-
-graph TD
-A[Raw MRI Images] --> B[Preprocessing & Augmentation]
-B --> C[YOLOv8 Model]
-C --> D[Evaluation Metrics]
-C --> E[Detection & Visualization]
-
-text
-
-- **Input:** MRI scan images.
-- **Process:** Preprocessing (resize, normalize, augment) → YOLOv8 detection → Postprocessing.
-- **Output:** Detected tumor bounding boxes, scored metrics.
-
----
-
-## Installation & Setup
-
-### Step-by-Step Installation
-
-Clone the repo
-git clone https://github.com/YOUR_USERNAME/Wilms-Tumor-Detection-Using-Deep-Learning-Approach.git
-cd Wilms-Tumor-Detection-Using-Deep-Learning-Approach
-
-Create Python virtual environment
-python -m venv venv
-
-Activate (Windows)
-venv\Scripts\activate
-
-Activate (Mac/Linux)
-source venv/bin/activate
-
-Install dependencies
+python -m venv .venv
+source .venv/bin/activate        # Windows: .venv\Scripts\activate
+pip install --upgrade pip
 pip install -r requirements.txt
 
-text
 
-### Quick Start
+Example requirements.txt (adjust versions as required):
 
-Data Augmentation
-python wilmstumordetection.py --augment --input_images data/images --input_labels data/labels --output_dir data/augmented
+numpy
+opencv-python
+Pillow
+tqdm
+torch         # pick appropriate CUDA / CPU wheel
+ultralytics   # if using Ultralytics YOLOv8 package
+matplotlib
+scikit-learn
+albumentations
 
-Train YOLOv8 Model
-python wilmstumordetection.py --train --epochs 50 --batch_size 16
 
-Inference Example
-python wilmstumordetection.py --detect --input images/test_image.jpg
+If you use a specific YOLO implementation (Ultralytics YOLOv8 or a custom repo), add/install that package accordingly.
 
-text
+Quick start — dataset & labels
 
-### Usage & Examples
+Place images in data/images/ and YOLO-format label files in data/labels/ (same file name with .txt).
 
-import wilmstumordetection
+Example label format (one line per object):
+class x_center y_center width height (normalized 0–1 relative to image size).
 
-Run preprocessing and training programmatically
-wilmstumordetection.preprocess(...)
-wilmstumordetection.train_model(epochs=50)
-results = wilmstumordetection.infer(img_path='images/sample.jpg')
-print(results)
+If you have bounding-box annotations in another format, use scripts/prepare_dataset.py to convert.
 
-text
+Training (example)
 
-### Using as Python Module
+Minimal example (assumes Ultralytics yolo CLI or a train_yolo.py wrapper):
 
-from wilmstumordetection import WilmsTumorDetector
+# using ultralytics package (example)
+yolo task=detect mode=train model=yolov8n.pt \
+  data=configs/wilms_dataset.yaml \
+  epochs=50 imgsz=416 batch=16 lr0=0.001
 
-detector = WilmsTumorDetector(model_path='best.pt')
-results = detector.predict('images/test_mri.jpg')
 
-text
+Or with a train_yolo.py wrapper:
 
-### Advanced Configuration
+python scripts/train_yolo.py --data configs/wilms_dataset.yaml \
+  --epochs 50 --batch 16 --img-size 416 --lr 0.001
 
-See config arguments in:
-python wilmstumordetection.py --help
 
-text
+Suggested hyperparameters (from the paper):
 
----
+Optimizer: Adam
 
-## Example Output
+Learning rate: 0.001
 
-![Detection Example](docs/example_detection.png)
+Epochs: 50 (use early stopping on validation loss)
 
-| Metric         | Value   |
-|----------------|---------|
-| Accuracy       | 97.4%   |
-| F1 Score       | 0.97    |
-| Dice Coef.     | 0.97    |
+Batch size: 16
 
----
+Image size: 416x416
+These values reflect the setup described in the paper. 
 
-## ⚡ Performance Results
+project-paper
 
-Project results are summarized below. See detailed interactive dashboard [here](https://github.com/deepakreddy1616/Real-time-logistics-routing-during-emergency-using-metaheuristic-algorithms#-performance-results).
+Inference (example)
 
-| Metric         | Value   |
-|----------------|---------|
-| Accuracy       | 97.4%   |
-| Recall         | 98.26%  |
-| Precision      | 96.55%  |
+Run detection on a folder of images:
 
----
+python inference/detect.py --weights models/best.pt --source data/images/ --img-size 416 --conf-thres 0.25
 
-## 📊 Quantitative Metrics
 
-- **Training Set:** 1000 images (augmented)
-- **Validation Set:** 200 images
-- **Test Set:** 200 images
-- **Epochs:** 50
-- **Optimizer:** Adam
-- **Batch Size:** 16
+inference/detect.py should:
 
----
+Load model and weights
 
-## 📄 PI Documentation
+Run detection on the source images
 
-Detailed methodology, dataset, and results are available in [`project-paper.pdf`](project-paper.pdf).
+Save annotated images to inference/results/
 
----
+Optionally output a CSV/JSON with bounding boxes and scores
 
-## 🧪 Testing
+Evaluation & Results
 
-- Unit tests for data preprocessing and metric calculations.
-- Evaluation scripts included in the notebook and main script.
-- See `tests/` folder for sample test cases (add as needed).
+The paper reports the following evaluation metrics (Table 1 / Results):
+Accuracy: 97.40%
+Precision: 96.55%
+Recall: 98.26%
+F1 score: 0.97
+Dice coefficient: 0.97
+(See the results table and training/validation loss curves in the paper.) 
 
----
+project-paper
 
-## 📚 Research References
+To evaluate on a test set, produce predictions and compute:
 
-- Venkatesh Kavididevi, Necha Akhila Sri Kornepati, Deepak Reddy Chelladi, Shoaib Ali MD, Vardhaman College of Engineering, Hyderabad, India.
-- [YOLOv8 Documentation](https://docs.ultralytics.com/)
-- [Radiopaedia Medical Image Database](https://radiopaedia.org)
+Precision, recall, F1 (per-class and overall)
 
----
+IoU and Dice coefficient for segmentation-like overlap (for bounding boxes you can compute IoU-based Dice)
 
-## ✍️ Authors
+mAP @ IoU thresholds (e.g. 0.5)
 
-- **Venkatesh Kavididevi**
-- **Necha Akhila Sri Kornepati**
-- **Deepak Reddy Chelladi**
-- **Shoaib Ali MD**
+Example evaluation snippet (very short):
 
-Department of Information Technology, Vardhaman College of Engineering, Hyderabad, India
+from sklearn.metrics import precision_score, recall_score, f1_score
 
----
+# load ground truth and predictions, compute per-image or aggregate metrics
 
-## 📄 License
+Notes & tips
 
-This project is licensed under the MIT License - see [LICENSE](LICENSE) for details.
+The dataset in the paper was small (20 patient cases → ~60 raw images) and augmented to ~1000 images. Use careful augmentation (rotation, flip, zoom) but avoid unrealistic transforms. 
 
----
+project-paper
 
-*Built with ❤️ using Python, YOLOv8, and PyTorch*
+Use cross-validation (paper used 5-fold) to reduce overfitting risk and get robust estimates. 
 
+project-paper
+
+Use NMS (non-maximum suppression) in post-processing to remove duplicate boxes. Morphological refinements were applied in the study to tighten bounding-box edges. 
+
+project-paper
+
+How to reproduce figures in the paper
+
+Training & validation loss curves: log losses (train/val) per epoch and plot using matplotlib.
+
+The paper contains figures showing training/validation loss and sample detections — reference pages 5–6 for images and charts. 
+
+project-paper
 
