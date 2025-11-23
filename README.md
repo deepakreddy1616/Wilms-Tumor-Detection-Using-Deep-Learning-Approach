@@ -10,9 +10,9 @@
 ---
 ## 📌 Project Overview
 
-Wilms tumor is the most frequent kidney cancer in children. 
-Early detection improves survival. 
-This project applies deep learning (YOLOv8) for precise object detection in pediatric MRIs, automating tumor localization for clinical decision support.
+Wilms tumor is the most frequent kidney cancer in children. Early detection improves survival. 
+It  is an AI-powered project that automates the identification of pediatric kidney tumors in MRI scans using YOLOv8 deep learning.
+It leverages advanced data augmentation and state-of-the-art object detection to localize tumors quickly and accurately.
 
 ---
 
@@ -43,7 +43,7 @@ This project applies deep learning (YOLOv8) for precise object detection in pedi
 - Inputs: MRI (Radiopaedia), YOLO labels
 - Model: YOLOv8 (CSPDarknet, PANet, SPP)
 - Outputs: Tumor bbox, metrics, plots
-
+---
 Raw MRI Images
       |
 Preprocessing & Augmentation (Albumentations, OpenCV)
@@ -56,16 +56,6 @@ Clinical Reporting (plots, PDF summaries)
 
 ---
 
-## How To Use
-
-**Train:**
-`python wilmstumordetection.py --train --epochs 50`
-
-**Evaluate or Predict:**
-`python wilmstumordetection.py --detect --input images/your_mri.jpg`
-
-**Visual Results:**
-`python -m scripts.visualize`
 
 
 ## ⚡ Performance Summary
@@ -87,13 +77,6 @@ F1 Score	0.97
 Dice Coef.	0.97
 
 ---
-## ⚙️ Installation & Setup
-bash
-git clone https://github.com/deepakreddy1616/Wilms-Tumor-Detection-Using-Deep-Learning.git
-cd Wilms-Tumor-Detection-Using-Deep-Learning
-python -m venv venv
-source venv/bin/activate     # On Windows: venv\Scripts\activate
-pip install -r requirements.txt
 
 ---
 ## 🚀 Usage
@@ -105,23 +88,6 @@ python wilmstumordetection.py --detect --input images/test_mri.jpg
 
 Help:
 python wilmstumordetection.py --help
-
----
-## 🧾 API Documentation
-python
-from wilmstumordetection import WilmsTumorDetector
-detector = WilmsTumorDetector(model_path='weights/best.pt')
-output = detector.predict('images/sample_mri.jpg')
-print(output)  # {'boxes':[], 'classes':[], 'scores':[]}
-Main API:
-
-train() - Model training
-
-predict(image_path) - Prediction from file
-
-visualize(image_path) - Annotated output
-
-----
 
 ---
 ## Docs and References
