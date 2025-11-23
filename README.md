@@ -89,7 +89,7 @@ Dice Coef.	0.97
 ---
 ## ⚙️ Installation & Setup
 bash
-git clone https://github.com/YOUR_USERNAME/Wilms-Tumor-Detection-Using-Deep-Learning.git
+git clone https://github.com/deepakreddy1616/Wilms-Tumor-Detection-Using-Deep-Learning.git
 cd Wilms-Tumor-Detection-Using-Deep-Learning
 python -m venv venv
 source venv/bin/activate     # On Windows: venv\Scripts\activate
@@ -122,9 +122,7 @@ predict(image_path) - Prediction from file
 visualize(image_path) - Annotated output
 
 ----
-## 🧪 Testing
-Run: pytest tests/
-Coverage: > 85%
+
 ---
 ## Docs and References
 - [YOLOv8 Docs](https://docs.ultralytics.com/)
