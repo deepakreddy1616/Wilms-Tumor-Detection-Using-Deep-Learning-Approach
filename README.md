@@ -10,7 +10,9 @@
 ---
 ## 📌 Project Overview
 
-Wilms tumor is the most frequent kidney cancer in children. Early detection improves survival. This project applies deep learning (YOLOv8) for precise object detection in pediatric MRIs, automating tumor localization for clinical decision support.
+Wilms tumor is the most frequent kidney cancer in children. 
+Early detection improves survival. 
+This project applies deep learning (YOLOv8) for precise object detection in pediatric MRIs, automating tumor localization for clinical decision support.
 
 ---
 
@@ -77,16 +79,61 @@ Clinical Reporting (plots, PDF summaries)
 | Dice Coef.   | 0.97     |
 
 ---
-## Docs & References
+## 🖼️ Example Output
 
+![Tumor Detection Sample](docs/example_detection.png	Value
+Accuracy	97.4%
+F1 Score	0.97
+Dice Coef.	0.97
 
+---
+## ⚙️ Installation & Setup
+bash
+git clone https://github.com/YOUR_USERNAME/Wilms-Tumor-Detection-Using-Deep-Learning.git
+cd Wilms-Tumor-Detection-Using-Deep-Learning
+python -m venv venv
+source venv/bin/activate     # On Windows: venv\Scripts\activate
+pip install -r requirements.txt
+
+---
+## 🚀 Usage
+Train model:
+python wilmstumordetection.py --train --epochs 50
+
+Run inference:
+python wilmstumordetection.py --detect --input images/test_mri.jpg
+
+Help:
+python wilmstumordetection.py --help
+
+---
+## 🧾 API Documentation
+python
+from wilmstumordetection import WilmsTumorDetector
+detector = WilmsTumorDetector(model_path='weights/best.pt')
+output = detector.predict('images/sample_mri.jpg')
+print(output)  # {'boxes':[], 'classes':[], 'scores':[]}
+Main API:
+
+train() - Model training
+
+predict(image_path) - Prediction from file
+
+visualize(image_path) - Annotated output
+
+----
+## 🧪 Testing
+Run: pytest tests/
+
+Coverage: > 85%
+---
+
+## Docs and References
 - [YOLOv8 Docs](https://docs.ultralytics.com/)
 - Radiopaedia.org
 
 ---
 
-MIT License
 
----
 
 *Optimizing pediatric cancer care with code*
