@@ -1,151 +1,171 @@
-🚨 Real-Time Emergency Logistics Routing Using Metaheuristic Algorithms
+🎯 Wilms Tumor Detection using Deep Learning
+[![Python](https://img.shields.io/badge/Python-3.8+-blue?style=flat-square&logo[![TensorFlow](https://img.shields.io/badge/TensorFlow-2.8+-orange?style=flat-square[![YOLOv8](https://img.shields.io/badge/YOLOv8-8.0+-(https://github.com/ultralytics/ultralyticshttps://img.shields.io/badge/License-MIT-yellow[![Status](https://img.shields.io/badge/Status-Active-brightgreen?style=flat-square
 
-[![Python](https://img.shields.io/badge/python-3.8+-blue?style=flat-square&logo[![NetworkX](https://img.shields.io/badge/NetworkX-3.2+-purple?style=flat-square[![OSMnx](https://img.shields.io/badge/OSMnx-1.3+-bright[![HERE Maps](https://img.shields.io/badge/HERE%20API-traffic-blue?style=flat-square&logo[![License](https://img.shields.io/badge/License-MIT-yellow[![Status](https://img.shields.io/badge/Status-Active-brightgreen?style=flat-square
+📋 Overview
+This project presents a deep learning pipeline for automated detection of Wilms Tumor (pediatric kidney cancer) in MRI scans. Our approach integrates a customized YOLOv8 model, extensive image augmentation, and robust evaluation, aiming to support clinicians and radiologists in rapid and accurate diagnosis.
 
-🎯 Project Overview
-A real-time, AI-driven logistics routing system designed for disaster and emergency response. Integrates live traffic data and Grey Wolf Optimization (GWO) for dynamically finding optimal vehicle delivery routes. Major goal: Minimize aid delivery delays and maximize route reliability during crisis scenarios.
+Motivation: Early detection is key to reducing relapse and improving pediatric outcomes. Machine learning enables consistent, reproducible, and precise detection, overcoming limitations of manual and conventional methods.
 
-Problem Statement
-In disasters (earthquakes, floods), traditional logistics is disrupted by road closures and unpredictable events.
+💡 Problem Statement
+Manual diagnosis of Wilms Tumor is time-consuming, subjective, and error-prone.
 
-Routing must adapt instantly to new obstacles, congestion, and shifting demand.
+Existing imaging techniques require expert review and may miss small or subtle tumors.
 
-Humanitarian supply chains require equitable, efficient, data-driven decision-making—beyond what classical algorithms provide.
+Need for a scalable, AI-powered system to identify tumors reliably and efficiently.
 
-Solution
-This project combines real-time data streams (from HERE Maps API) and a metaheuristic GWO algorithm to automatically and adaptively generate robust, optimal routes, even as conditions change.
+🧑‍🔬 Solution
+Collect and augment a diverse dataset of pediatric MRI scans (Wilms Tumor and controls)
 
-📊 Key Results
-Metric	Value / Result	Status
-Avg. Travel Time	294.96 units (synthetic)	⚡ Fast
-Route Reliability	97% feasible routes	✅ Robust
-Avg. Runtime (25 nodes)	0.0129 s	🚀 Scalable
-Real-Time Data/Adaptivity	Supported	✅
-Multi-Criteria Fitness	Time, congestion, safety	✅
+Preprocess images for uniformity and training efficiency
+
+Deploy YOLOv8 architecture for fast, accurate object detection
+
+Annotate and label tumor regions with bounding boxes
+
+Evaluate performance using accuracy, precision, recall, F1-score, and Dice coefficient
+
+🚀 Key Results
+Metric	Value
+Accuracy	97.40%
+Precision	96.55%
+Recall	98.26%
+F1-Score	0.97
+Dice coeff.	0.97
+Training data	1000 images (augmented from 60 MRI scans/20 patients)
+Model	YOLOv8 (custom config)
 ✨ Features
-✅ Real-time Routing
- - Live traffic, closures, hazards from HERE Maps API
-✅ Metaheuristic Optimization
- - GWO algorithm for complex, uncertain environments
-✅ Dynamic Adaptation
- - Instantly adjusts to new disruptions or demand
-✅ Multi-Objective Fitness
- - Travel time, congestion, and road safety
-✅ Scalability and Speed
- - Solves large city sub-graphs in milliseconds
-✅ Humanitarian Focus
- - Fair resource allocation, disaster-mitigation design
-✅ Visualizations
- - Route and convergence visualizations with Folium and Matplotlib
+✅ End-to-end pipeline: Data pre-processing, augmentation, training, evaluation
+✅ Extensive data augmentation (rotation, flipping, zooming)
+✅ YOLOv8 architecture with CSPDarknet backbone, PANet and SPP neck, multi-scale detection head
+✅ Bounding box labeling and visualization
+✅ Cross-validation and independent test evaluation
+✅ Robust post-processing (NMS, morphological box refinement)
+✅ Performance plots (loss convergence, metrics over epochs)
+✅ Modular, Pythonic codebase
 
 🛠️ Technology Stack
 Component	Technology
 Programming Language	Python 3.8+
-Graph Library	NetworkX, OSMnx
-Optimization	Grey Wolf Optimization (custom)
-Data Sources	HERE Maps API, OpenStreetMap
-Visualization	Folium, Matplotlib
-Scientific Computing	Numpy, Pandas
-🚀 Quick Start
+DL Framework	TensorFlow, Keras
+Detection Model	YOLOv8
+Image Processing	OpenCV, PIL
+Data Augmentation	Custom routines
+Environment	Google Colab/Jupyter
+🏗️ Project Structure
+text
+Wilms-Tumor-Detection/
+│
+├── wilmstumordetection.py      # Main pipeline (preprocessing, train, eval, visualize)
+├── project-paper.pdf           # Full research methodology & results
+├── README.md                   # This file
+└── requirements.txt            # Package dependencies
+
+├── data/
+│   ├── images/                 # Source MRI scans
+│   ├── labels/                 # Bounding box annotations
+│   └── augmented/              # Augmented image data
+│
+├── models/
+│   └── yolov8_weights.h5       # Trained model weights
+├── outputs/
+│   ├── visualizations/         # Detection and metric plots
+│   └── results.csv             # Evaluation metrics
+📦 Installation
 Prerequisites
-Python 3.8 or higher
+Python 3.8 or above
 
 pip
 
 Git
 
-HERE Maps API key (register free)
-
-Installation
+Steps
 bash
-# 1. Clone this repo
-git clone https://github.com/YOUR_USERNAME/emergency-logistics-routing.git
-cd emergency-logistics-routing
+git clone https://github.com/YOUR_USERNAME/Wilms-Tumor-Detection.git
+cd Wilms-Tumor-Detection
 
-# 2. Set up virtual environment
 python -m venv venv
-# Activate (Windows)
+# Windows:
 venv\Scripts\activate
-# Activate (Mac/Linux)
+# Mac/Linux:
 source venv/bin/activate
 
-# 3. Install all dependencies
+pip install --upgrade pip
 pip install -r requirements.txt
+⚡ Usage
+1. Data Augmentation
+bash
+python wilmstumordetection.py --augment \
+  --input_dir data/images \
+  --label_dir data/labels \
+  --output_dir data/augmented
+2. Training
+bash
+python wilmstumordetection.py --train \
+  --epochs 50 \
+  --batch_size 16 \
+  --lr 0.001
+3. Evaluation
+bash
+python wilmstumordetection.py --evaluate \
+  --model_path models/yolov8_weights.h5 \
+  --test_dir data/test_images \
+  --test_labels data/test_labels
+4. Visualization
+bash
+python wilmstumordetection.py --visualize \
+  --input_dir outputs/visualizations
+🧠 Methodology
+Dataset Construction: Axial portal venous phase MRI scans from 20 patients, augmented to ~1000 images
 
-# 4. Set up environment
-cp .env.example .env
-# Add your HERE Maps API key to .env
-Basic Usage
-python
-from src.routing_system import EmergencyRoutingProblem, RealTimeGWO
+Preprocessing: Normalization, resizing (416x416 px), geometric and photometric augmentation
 
-problem = EmergencyRoutingProblem(
-    city_name="Hyderabad, Telangana, India",
-    num_locations=10
-)
-optimizer = RealTimeGWO(
-    problem=problem,
-    num_wolves=20,
-    max_iter=50
-)
-best_route, best_time, convergence = optimizer.optimize()
+Model Architecture: YOLOv8 (CSPDarknet backbone, PANet/SPP neck, multi-scale output head)
 
-print(f"Best route: {best_route}")
-print(f"Total travel time: {best_time}")
+Labeling: Manual bounding box annotation per scan (txt/Yolo format)
 
-📈 How It Works
-Real-Time Data Ingestion: Retrieves live traffic, incident, and network info (HERE Maps)
+Training: Adam optimizer, composite loss for classification and localization, early stopping
 
-Weighted Graph Construction: Models city as graph, weights edges with time, safety, and congestion
+Validation: 5-fold cross-validation plus test set
 
-GWO Optimization: Simulated wolf “agents” iteratively search for route minimizing time/cost/safety penalty
+Post-processing: NMS and morphological refinements for bounding boxes
 
-Fitness Calculation: Multi-objective function scoring speed, congestion, hazards
+Evaluation: On independent test set—reporting accuracy, precision, recall, F1, Dice
 
-Visualization: Best route and all metrics visualized (Folium, matplotlib)
+📊 Training and Test Performance
+Metric	Training	Test
+Accuracy	97.4%	>96%
+Precision	96.6%	>95%
+Recall	98.3%	>97%
+F1-Score	0.97	>0.96
+Dice coefficient	0.97	>0.96
+Training curves and sample result visualizations available in outputs/visualizations/.
 
-🧪 Model Highlights
-Grey Wolf Optimization: Population-based; uses alpha, beta, delta wolves as leaders, updating routes iteratively
+🔬 Research Context
+This model leverages and advances current best practices from automated tumor classification studies (see Literature Review in project-paper.pdf), demonstrating superior accuracy and reliability in pediatric MRI interpretation.
 
-Dynamic Response: Auto-recomputes routes on closure or incident triggers
-
-Multi-metric Evaluation: Optimizes not just for speed but also safety and reliability
-
-📄 Results & Evaluation
-Key Metrics (Sample Synthetic Test)
-Metric	Value
-Travel Time	294.96 units
-Route Reliability	97%
-Runtime (25 nodes)	0.013 s
-Scalability	Linear (w.r.t nodes)
-Convergence curves show improvement at each GWO iteration
-
-Visual route maps generated for each test scenario
-
-See paper for full benchmarks and evaluations
-
-💡 Real-World Impact
-Designed for:
-
-Disaster relief agencies & humanitarian NGOs
-
-Urban planners & smart city logistics
-
-Researchers in AI for critical infrastructure
+⚙️ Configuration
+YOLOv8 settings, hyperparameters, and training routines are fully customizable via command-line flags. See wilmstumordetection.py --help for all options.
 
 📚 Documentation
-For full methodology, literature survey, mathematical formulation, and ablation studies:
-📄 paper/Project-Paper.pdf
+Full research paper, dataset details, methodology, and references in project-paper.pdf
 
-🔗 Related Resources
-HERE Maps API
+Annotated, readable code in wilmstumordetection.py
 
-Grey Wolf Optimization paper
+For questions, contact the authors
 
-OSMnx Docs
+🏆 Authors & Collaborators
+Venkatesh Kavididevi
 
-📝 License
-This project is licensed under the MIT License – see LICENSE for details.
+Neeha Akhila Sri Kornepati
 
-🌟 If you found this useful, please ⭐ the repo and cite our work!
-Built for emergency logistics in a changing world, powered by real-time data, metaheuristics, and Python.
+Deepak Reddy Chelladi
+
+Shoaib Ali MD
+
+Department of Information Technology, Vardhaman College of Engineering
+
+🔗 References
+Key references from academic literature included in the project paper—benchmarking deep learning in Wilms Tumor detection and segmentation.
+
+📄 License
+MIT License – free for academic, medical, and non-commercial use.
