@@ -124,10 +124,8 @@ visualize(image_path) - Annotated output
 ----
 ## 🧪 Testing
 Run: pytest tests/
-
 Coverage: > 85%
 ---
-
 ## Docs and References
 - [YOLOv8 Docs](https://docs.ultralytics.com/)
 - Radiopaedia.org
