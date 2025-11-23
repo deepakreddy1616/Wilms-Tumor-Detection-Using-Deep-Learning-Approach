@@ -1,175 +1,183 @@
-🩺 Wilms Tumor Detection using Deep Learning (YOLOv8)
-[![Python](https://img.shields.io/badge/Python-3.8+-blue?style=flat-square&logo[![TensorFlow](https://img.shields.io/badge/TensorFlow-2.8+-orange?style=flat-square[![YOLOv8](https://img.shields.io/badge/YOLOv8-Object%20Detection-success?style=flat-square&logo=ultralytics(https://github.com/ultralytics/ultralyticsge/License-MIT-yellow[![Status](https://img.shields.io/badge/Status-Active-brightgreen?style=flat-square
+🧠 Wilms Tumor Detection using Deep Learning (YOLO)
 
-🚀 Project Overview
-A deep learning pipeline for automated Wilms Tumor detection in pediatric kidney MRI scans. Leveraging YOLOv8 for real-time, high-accuracy tumor localization, this project aims to enhance diagnostic speed and precision in clinical settings.
+A deep learning–based medical imaging project to detect Wilms tumor in pediatric MRI scans using a YOLO architecture.
+This repository contains code, documentation, trained model files, and the full project paper.
 
-Wilms Tumor is the most common renal cancer in children—early and accurate detection is vital for prognosis and treatment outcomes.
+📄 Full Project Paper: project-paper.pdf (included in repo)
 
-🎯 Problem Statement
-Pediatric Wilms Tumor diagnosis is challenging and subject to human error.
+⭐ Project Highlights
 
-Manual annotation of MRI scans is tedious, requiring experienced radiologists.
+🚀 YOLO-based object detection model tailored for MRI tumor detection
 
-There is a pressing need for automated, robust, and fast tumor detection to assist medical professionals.
+🎯 Achieves 97.4% accuracy, 96.55% precision, 98.26% recall, F1 = 0.97
 
-🌟 Solution
-Use YOLOv8, a state-of-the-art object detection model, for fast and accurate tumor localization.
+🧪 Dataset of MRI scans, preprocessed & augmented to improve robustness
 
-Preprocess and augment MRI datasets to increase training diversity.
+🧩 Includes training scripts, inference code, model weights, and evaluation
 
-Evaluate rigorously with multiple metrics (accuracy, precision, recall, F1, Dice).
+📚 Built as part of an academic deep learning research project
 
-Provide outputs for bounding box visualizations and clinical decision support.
+📘 Table of Contents
 
-📈 Results Highlights
-Metric	Value
+Overview
+
+Dataset
+
+Results
+
+Tech Stack
+
+Repository Structure
+
+Setup & Installation
+
+Training
+
+Inference
+
+Contact
+
+🔍 Overview
+
+Wilms tumor is a kidney cancer commonly found in children.
+This project builds an end-to-end deep learning pipeline to automatically detect tumor regions on MRI scans.
+
+We use a YOLO architecture with:
+
+CSP-type backbone
+
+PANet + SPP neck
+
+YOLO detection head
+
+Adam optimizer
+
+Image size: 416×416
+
+Epochs: 50
+
+Batch size: 16
+
+🗂 Dataset
+
+MRI images collected from open-source radiology resources
+
+20 patient cases → ~60 raw images
+
+Data augmented → 1000+ images
+
+Labeled using YOLO bounding-box format
+
+Train/Val split: 80/20
+
+🧪 Results
+Metric	Score
 Accuracy	97.40%
 Precision	96.55%
 Recall	98.26%
-F1-Score	0.97
+F1 Score	0.97
 Dice Coefficient	0.97
-Training Dataset	~1000 images
-Backbone Model	YOLOv8 (CSPDarknet, PANet, SPP)
-✨ Features
-End-to-End Pipeline: Data loading, augmentation, model training, evaluation, and visualization
 
-Rich Augmentation: Rotation, flipping, zoom, intensity normalization
+The model reliably detects Wilms tumor regions with strong performance across all metrics.
 
-Modern Architecture: YOLOv8 for unified, fast diagnosis (single pass, multi-scale detection)
+🛠 Tech Stack
 
-Bounding Box Outputs: For rapid review and manual correction
+Python
 
-Cross-validation & Test Evaluation: Reliable performance estimates
+PyTorch
 
-User-friendly CLI: Simple command-line commands for training and inference
+YOLO architecture (Ultralytics-based or custom implementation)
 
-🛠️ Technology Stack
-Area	Tool / Framework
-Programming Language	Python 3.8+
-DL Framework	TensorFlow, Keras
-Detection Model	YOLOv8
-Image Processing	OpenCV, PIL
-Visualization	Matplotlib
-Execution	Local, Google Colab
-🏗️ Project Structure
-text
-Wilms-Tumor-Detection/
-├── wilmstumordetection.py      # Complete pipeline script
-├── project-paper.pdf           # Research, full methodology
-├── README.md                   # You are here!
-├── requirements.txt
-│
+OpenCV
+
+Albumentations
+
+NumPy / Matplotlib
+
+Scikit-learn
+
+📁 Repository Structure
+.
+├── README.md
+├── project-paper.pdf
 ├── data/
-│   ├── images/                 # Raw MRI images
-│   ├── labels/                 # YOLO-style bounding box annotations
-│   └── augmented/              # Augmented data
-│
+│   ├── images/
+│   └── labels/
+├── scripts/
+│   ├── prepare_dataset.py
+│   ├── augment.py
+│   └── train_yolo.py
+├── inference/
+│   └── detect.py
 ├── models/
-│   └── yolov8_weights.h5       # Trained weights
-│
-├── outputs/
-│   ├── visualizations/         # Plots, example predictions
-│   └── results.csv             # Metrics
-⚡ Quick Start
-Prerequisites
-Python 3.8+
+│   └── best.pt
+├── configs/
+│   └── dataset.yaml
+└── requirements.txt
 
-pip
+⚙️ Setup & Installation
+git clone <your-repo-link>
+cd <repo-folder>
 
-Clone/download this repository
-
-Install requirements
-
-(Optional) Google Colab for rapid prototyping
-
-Installation
-bash
-git clone https://github.com/YOUR_USERNAME/Wilms-Tumor-Detection.git
-cd Wilms-Tumor-Detection
 python -m venv venv
-# Windows:
-venv\Scripts\activate
-# Mac/Linux:
-source venv/bin/activate
+source venv/bin/activate        # Windows → venv\Scripts\activate
+
 pip install -r requirements.txt
-Usage
-Data Augmentation
-
-bash
-python wilmstumordetection.py --augment --input_dir data/images --output_dir data/augmented
-Training
-
-bash
-python wilmstumordetection.py --train --epochs 50 --batch_size 16 --lr 0.001
-Evaluation
-
-bash
-python wilmstumordetection.py --eval --model_path models/yolov8_weights.h5 --test_dir data/test_images --test_labels data/test_labels
-Visualization
-
-bash
-python wilmstumordetection.py --visualize --input_dir outputs/visualizations
-🔬 Methodology
-Dataset: MRI scans from 20 patients, with bounding boxes for Wilms tumors; augmented to ~1000 samples
-
-Preprocessing: Normalization, resizing to 416x416, geometric and photometric augmentation
-
-Model: YOLOv8 (CSPDarknet backbone, PANet and SPP neck, multi-scale head)
-
-Training: Adam optimizer (lr=0.001), batch size 16, early stopping based on validation loss
-
-Evaluation Metrics: Accuracy, precision, recall, F1-score, Dice coefficient
-
-Post-processing: NMS for duplicate suppression, morphological box refinement
-
-Validation: 5-fold cross-validation plus independent test set
-
-📊 Sample Results
-Class	Precision	Recall	F1	Dice
-Wilms Tumor	96.5%	98.3%	0.97	0.97
-Overall	96.4%	98.1%	0.97	0.97
-📚 References and Documentation
-Full details, ablation studies, and literature survey: project-paper.pdf
-
-Source code: wilmstumordetection.py
-
-🏆 Authors & Contributors
-Venkatesh Kavididevi
-
-Neeha Akhila Sri Kornepati
-
-Deepak Reddy Chelladi
-
-Shoaib Ali MD
-Department of Information Technology, Vardhaman College of Engineering
-
-🔗 Related Resources
-YOLOv8
-
-TensorFlow
-
-Medical Imaging Datasets
-
-📄 License
-MIT – free for research, education, and non-commercial use.
-
-🌟 If you found this useful, please ⭐ this repo and cite the project in your research!
-Automating medical diagnostics for better outcomes, powered by deep learning and open data.
-
-Related
-
-Show a concise project overview and key features section
-
-Provide a setup and installation quick start with commands
-
-Add a usage examples section with code snippets
-
-Include contribution guidelines and pull request template
-
-Suggest badges and a clear license and citation block
-\
 
 
+Example requirements.txt:
+
+torch
+opencv-python
+ultralytics
+numpy
+matplotlib
+albumentations
+scikit-learn
+Pillow
+tqdm
+
+🏋️ Training
+
+Using Ultralytics YOLO:
+
+yolo task=detect mode=train model=yolov8n.pt \
+  data=configs/dataset.yaml \
+  epochs=50 batch=16 imgsz=416 lr0=0.001
 
 
+OR using your custom script:
+
+python scripts/train_yolo.py --epochs 50 --batch 16 --img-size 416
+
+🔮 Inference
+
+Run detection on sample images:
+
+python inference/detect.py --weights models/best.pt --source data/images/
+
+
+Results will be saved in:
+
+inference/results/
+
+👨‍⚕️ Applications
+
+Early tumor screening
+
+Radiology workflow assistance
+
+Decision support systems
+
+Medical AI research
+
+📬 Contact
+
+📧 chelladideepakreddy@gmail.com
+
+💼 LinkedIn: Add your link here
+
+📜 License
+
+This project is licensed under the MIT License.
+Feel free to use, modify, and contribute.
